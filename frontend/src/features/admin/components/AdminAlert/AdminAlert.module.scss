@@ -1,0 +1,8 @@
+.success {
+  padding: $space-sm $space-md;
+  font-size: $font-size-sm;
+  color: $color-success;
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid $color-success;
+  border-radius: $radius-md;
+}

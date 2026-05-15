@@ -1,0 +1,32 @@
+.card {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.submit {
+  margin-top: $space-sm;
+}
+
+.footer {
+  margin-top: $space-lg;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  text-align: center;
+
+  a {
+    color: $color-accent;
+    font-weight: 500;
+
+    &:hover {
+      color: $color-accent-hover;
+    }
+  }
+}

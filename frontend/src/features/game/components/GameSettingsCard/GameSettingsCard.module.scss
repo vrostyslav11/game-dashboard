@@ -1,0 +1,45 @@
+.card {
+  margin-bottom: $space-lg;
+}
+
+.list {
+  display: grid;
+  gap: $space-md;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $space-md;
+
+  dt {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+  }
+
+  dd {
+    font-weight: 500;
+    color: $color-text;
+    text-align: right;
+  }
+}
+
+.badgeEnabled,
+.badgeDisabled {
+  display: inline-block;
+  padding: $space-xs $space-sm;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  border-radius: $radius-sm;
+}
+
+.badgeEnabled {
+  color: $color-success;
+  background: rgba(74, 222, 128, 0.12);
+}
+
+.badgeDisabled {
+  color: $color-danger;
+  background: $color-danger-muted;
+}

@@ -1,0 +1,13 @@
+.card {
+  @include card-surface;
+  padding: $space-lg;
+}
+
+.title {
+  margin-bottom: $space-md;
+  color: $color-text;
+}
+
+.body {
+  color: $color-text-muted;
+}

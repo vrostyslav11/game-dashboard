@@ -1,0 +1,31 @@
+.card {
+  margin-bottom: $space-lg;
+}
+
+.list {
+  display: grid;
+  gap: $space-sm;
+  margin-bottom: $space-lg;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: $space-md;
+  padding: $space-sm 0;
+  border-bottom: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  dt {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+  }
+
+  dd {
+    font-weight: 500;
+    color: $color-text;
+  }
+}

@@ -1,0 +1,107 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: $header-height;
+  border-bottom: 1px solid $color-border;
+  background: $color-bg-elevated;
+}
+
+.headerInner {
+  max-width: $max-content-width;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 $space-md;
+  display: flex;
+  align-items: center;
+  gap: $space-lg;
+
+  @include respond-to('md') {
+    padding: 0 $space-lg;
+  }
+}
+
+.brand {
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $color-accent;
+  white-space: nowrap;
+
+  &:hover {
+    color: $color-accent-hover;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+  flex: 1;
+  overflow-x: auto;
+}
+
+.navLink {
+  padding: $space-sm $space-md;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  border-radius: $radius-md;
+  white-space: nowrap;
+  transition:
+    color $transition-fast,
+    background-color $transition-fast;
+
+  &:hover {
+    color: $color-text;
+    background: $color-bg-hover;
+  }
+}
+
+.navLinkActive {
+  color: $color-accent;
+  background: $color-accent-muted;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  margin-left: auto;
+}
+
+.userMeta {
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.2;
+
+  @include respond-to('sm') {
+    display: flex;
+  }
+}
+
+.username {
+  font-size: $font-size-sm;
+  color: $color-text;
+}
+
+.role {
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.main {
+  flex: 1;
+  max-width: $max-content-width;
+  width: 100%;
+  margin: 0 auto;
+  padding: $space-lg $space-md;
+
+  @include respond-to('md') {
+    padding: $space-xl $space-lg;
+  }
+}

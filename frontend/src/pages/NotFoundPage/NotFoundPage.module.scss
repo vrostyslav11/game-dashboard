@@ -1,0 +1,16 @@
+.wrapper {
+  @include flex-center;
+  min-height: 100vh;
+  padding: $space-lg;
+}
+
+.card {
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+}
+
+.message {
+  margin-bottom: $space-lg;
+  color: $color-text-muted;
+}

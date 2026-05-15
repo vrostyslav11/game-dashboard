@@ -1,0 +1,17 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  margin-bottom: $space-lg;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: $space-md;
+  align-items: end;
+}
+
+.apply {
+  justify-self: start;
+}

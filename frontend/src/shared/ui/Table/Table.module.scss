@@ -1,0 +1,43 @@
+.wrapper {
+  overflow-x: auto;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.table {
+  width: 100%;
+  font-size: $font-size-sm;
+}
+
+.head {
+  background: $color-bg-hover;
+}
+
+.header {
+  padding: $space-sm $space-md;
+  text-align: left;
+  font-weight: 600;
+  color: $color-text-muted;
+  border-bottom: 1px solid $color-border;
+}
+
+.row {
+  &:hover {
+    background: $color-bg-hover;
+  }
+
+  &:not(:last-child) .cell {
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+.cell {
+  padding: $space-sm $space-md;
+  color: $color-text;
+}
+
+.empty {
+  padding: $space-xl;
+  text-align: center;
+  color: $color-text-muted;
+}

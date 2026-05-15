@@ -1,0 +1,12 @@
+.layout {
+  @include flex-center;
+  min-height: 100vh;
+  padding: $space-lg $space-md;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  @include card-surface;
+  padding: $space-xl;
+}

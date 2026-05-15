@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum ScoreStrategy {
+  LATEST
+  MAX
+  MIN
+  CUMULATIVE
+}
+
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  email        String   @unique
+  username     String   @unique
+  passwordHash String
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  leaderboardEntry LeaderboardEntry?
+  scoreSubmissions ScoreSubmission[]
+  settingsUpdated  GameSettings[]    @relation("SettingsUpdatedBy")
+}
+
+model LeaderboardEntry {
+  id     String @id @default(uuid()) @db.Uuid
+  userId String @unique @db.Uuid
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  currentScore Int  @default(0)
+  bestScore    Int  @default(0)
+  worstScore   Int?
+  lastScore    Int  @default(0)
+  totalScore   Int  @default(0)
+  gamesPlayed  Int  @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([currentScore])
+}
+
+model ScoreSubmission {
+  id              String        @id @default(uuid()) @db.Uuid
+  userId          String        @db.Uuid
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  score           Int
+  strategyUsed    ScoreStrategy
+  durationSeconds Int
+  clicksPerSecond Float
+  createdAt       DateTime      @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model GameSettings {
+  id                 String        @id @default(uuid()) @db.Uuid
+  durationSeconds    Int           @default(10)
+  activeStrategy     ScoreStrategy @default(LATEST)
+  maxClicksPerSecond Int           @default(15)
+  isGameEnabled      Boolean       @default(true)
+  updatedByAdminId   String?       @db.Uuid
+  updatedByAdmin     User?         @relation("SettingsUpdatedBy", fields: [updatedByAdminId], references: [id], onDelete: SetNull)
+  updatedAt          DateTime      @updatedAt
+}

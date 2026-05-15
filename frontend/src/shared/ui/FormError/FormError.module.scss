@@ -1,0 +1,8 @@
+.error {
+  padding: $space-sm $space-md;
+  font-size: $font-size-sm;
+  color: $color-danger;
+  background: $color-danger-muted;
+  border: 1px solid $color-danger;
+  border-radius: $radius-md;
+}

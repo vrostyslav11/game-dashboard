@@ -1,0 +1,45 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.heading {
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $color-text;
+}
+
+.meta {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: $space-md;
+  align-items: start;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  padding-top: $space-lg;
+  font-size: $font-size-sm;
+  color: $color-text;
+  cursor: pointer;
+
+  input {
+    width: 1rem;
+    height: 1rem;
+    accent-color: $color-accent;
+  }
+}

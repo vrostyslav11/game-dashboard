@@ -1,0 +1,85 @@
+.card {
+  margin-bottom: $space-lg;
+}
+
+.disabledMessage {
+  margin-bottom: $space-md;
+  padding: $space-sm $space-md;
+  font-size: $font-size-sm;
+  color: $color-danger;
+  background: $color-danger-muted;
+  border-radius: $radius-md;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-md;
+  margin-bottom: $space-md;
+}
+
+.stat {
+  @include card-surface;
+  padding: $space-md;
+  text-align: center;
+}
+
+.statLabel {
+  display: block;
+  margin-bottom: $space-xs;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.statValue {
+  font-size: $font-size-2xl;
+  font-weight: 600;
+  color: $color-accent;
+}
+
+.clickArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 160px;
+  margin-bottom: $space-md;
+  font-size: $font-size-xl;
+  font-weight: 600;
+  color: $color-text-muted;
+  background: $color-bg;
+  border: 2px dashed $color-border;
+  border-radius: $radius-lg;
+  transition:
+    border-color $transition-fast,
+    background-color $transition-fast,
+    color $transition-fast;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.clickAreaActive {
+  color: $color-text;
+  background: $color-accent-muted;
+  border-color: $color-accent;
+  border-style: solid;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: rgba(74, 158, 255, 0.25);
+  }
+}
+
+.hint {
+  margin-bottom: $space-md;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  text-align: center;
+}
+
+.startButton {
+  margin-top: $space-xs;
+}

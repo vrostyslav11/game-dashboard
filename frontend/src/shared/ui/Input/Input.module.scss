@@ -1,0 +1,47 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.label {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.input {
+  width: 100%;
+  padding: $space-sm $space-md;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  color: $color-text;
+  transition: border-color $transition-fast;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: $color-text-muted;
+  }
+
+  &:focus {
+    border-color: $color-border-focus;
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.hasError {
+  border-color: $color-danger;
+}
+
+.error {
+  font-size: $font-size-sm;
+  color: $color-danger;
+}
