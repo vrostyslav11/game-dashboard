@@ -1,27 +1,50 @@
 # Gaming Leaderboard
 
-Full-stack take-home: players play a timed click game, scores hit the leaderboard. Ranking uses one of four strategies (latest / max / min / cumulative). Admin can change strategy and game rules.
+Full-stack take-home: players compete in a timed click challenge, scores hit the leaderboard. Ranking uses one of four strategies (latest / max / min / cumulative). Admin can change strategy and game rules.
 
 `backend/` — NestJS, Prisma, Postgres  
 `frontend/` — React, Vite
 
-You need **Node.js**, **npm**, and **Docker** (for Postgres only).
+You need **Node.js**, **npm**, and **Docker** (for Postgres).
 
----
-
-## Postgres
+## Quick start
 
 From the repo root:
 
 ```bash
 docker compose up -d
+
+cd backend
+cp .env.example .env
+npm install
+npm run prisma:migrate
+npm run prisma:seed
+npm run start:dev
 ```
 
-That starts Postgres on port **5432**. Login matches `backend/.env.example` (`postgres` / `postgres`, database `leaderboard`).
+New terminal:
 
-Check it's up: `docker ps` — container `leaderboard-postgres` should be running.
+```bash
+cd frontend
+cp .env.example .env
+npm install
+npm run dev
+```
 
-To stop: `docker compose down`
+Open http://localhost:5173 (Postgres + backend must be running first).
+
+---
+
+## Postgres
+
+```bash
+docker compose up -d
+```
+
+Postgres on **5432**. Credentials match `backend/.env.example` (`postgres` / `postgres`, db `leaderboard`).
+
+`docker ps` — look for `leaderboard-postgres`.  
+Stop: `docker compose down`
 
 ---
 
@@ -32,7 +55,7 @@ cd backend
 cp .env.example .env
 ```
 
-Open `.env` and change **`JWT_SECRET`** (required). Leave `DATABASE_URL` and `CORS_ORIGINS` unless you know you need something else.
+Open `.env`. For local dev the defaults from `.env.example` are fine. Change `JWT_SECRET` only if you want your own value (any long random string).
 
 ```bash
 npm install
@@ -41,16 +64,22 @@ npm run prisma:seed
 npm run start:dev
 ```
 
+If migrations fail on a fresh machine:
+
+```bash
+npx prisma migrate reset
+```
+
+That wipes the DB and reapplies migrations + seed.
+
 - API: http://localhost:3000  
 - Swagger: http://localhost:3000/docs  
 
-`prisma:seed` creates default game settings and two users (see below). Without seed, admin login won't exist.
+`prisma:seed` creates game settings and test users. No seed = no admin login.
 
 ---
 
 ## Frontend
-
-Second terminal:
 
 ```bash
 cd frontend
@@ -59,24 +88,24 @@ npm install
 npm run dev
 ```
 
-http://localhost:5173 — frontend calls the API at `VITE_API_URL` (default `http://localhost:3000`). Backend must already be running.
+http://localhost:5173 — needs **Postgres and backend** already up (`VITE_API_URL` defaults to `http://localhost:3000`).
 
 ---
 
-## Logins (from seed)
+## Logins (seed)
 
 | | email | password |
 |---|--------|----------|
 | Admin | admin@example.com | Admin123! |
 | Player | player@example.com | Player123! |
 
-`/admin` is ADMIN only. New signups are always USER.
+`/admin` — ADMIN only. Register always creates USER.
 
 ---
 
 ## If something breaks
 
-- **DB connection refused** — Docker not running or `docker compose up -d` not done.  
-- **CORS errors in browser** — `CORS_ORIGINS` in `backend/.env` must include `http://localhost:5173`.  
-- **401 on game** — log in first; submitting a score needs a token.  
-- **Port 5432 busy** — another Postgres on the machine; stop it or change the port in `docker-compose.yml` and `DATABASE_URL`.
+- **DB connection refused** — `docker compose up -d` not run or container stopped  
+- **CORS in browser** — `CORS_ORIGINS` in `backend/.env` must include `http://localhost:5173`  
+- **401 on game** — log in first  
+- **Port 5432 busy** — stop other Postgres or change port in `docker-compose.yml` + `DATABASE_URL`
